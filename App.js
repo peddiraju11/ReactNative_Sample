@@ -1,21 +1,27 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet, View, Text, Button, Linking
 } from 'react-native';
 
 const App = () => {
+
+  const [name, setName] = useState("Raju")
+  const [session, setSession] = useState({ number: 7, title: "Ravi" })
+  const [IsCurrent, setIsCurrent] = useState(true)
+
+
+  const onPressButton = () => {
+    setName("Ravi Raj")
+    setSession({ number: 11, title: "Janu" })
+    setIsCurrent(false)
+  }
+
   return (
     <View style={styles.body}>
-      <Text style={styles.text}>Hi Team</Text>
-      <Button style={styles.button} title='Click Here' onPress={() => { Linking.openURL("https://www.youtube.com") }}></Button>
+      <Text style={styles.text}>Hello World with {name}</Text>
+      <Text style={styles.text}>Current Seesion number {session.number} with {session.title}</Text>
+      <Text style={styles.text}>{IsCurrent ? 'Current Session' : 'Next Sesion'}</Text>
+      <Button style={styles.button} title='Click Here' onPress={() => { onPressButton() }}></Button>
     </View>
   );
 };
@@ -31,7 +37,7 @@ const styles = StyleSheet.create({
   text: {
     color: '#000000',
     fontSize: 20,
-    margin: 20,
+    margin: 10,
   },
   button: {
     margin: 20,
