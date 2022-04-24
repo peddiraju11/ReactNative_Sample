@@ -6,16 +6,24 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet, View, Text, Button, Linking
 } from 'react-native';
 
 const App = () => {
+
+  const [value, setValue] = useState(0)
+  const [clickValue, setClickValue] = useState(0)
+  const onPressAdd = () => {
+    setValue(value + 5)
+    setClickValue(clickValue + 1)
+  }
   return (
     <View style={styles.body}>
-      <Text style={styles.text}>Hi Team</Text>
-      <Button style={styles.button} title='Click Here' onPress={() => { Linking.openURL("https://www.youtube.com") }}></Button>
+      <Text style={styles.text}>{value}</Text>
+      <Button style={styles.button} title='Add' onPress={() => { onPressAdd() }}></Button>
+      <Text style={styles.text}>{clickValue}</Text>
     </View>
   );
 };
