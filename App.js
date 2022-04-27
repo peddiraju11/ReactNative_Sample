@@ -1,11 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React from 'react';
 import {
   StyleSheet, View, Text, Button, Linking
@@ -14,8 +6,15 @@ import {
 const App = () => {
   return (
     <View style={styles.body}>
-      <Text style={styles.text}>Hi Team</Text>
-      <Button style={styles.button} title='Click Here' onPress={() => { Linking.openURL("https://www.youtube.com") }}></Button>
+      <View style={styles.view1}>
+        <Text style={styles.text}>1</Text>
+      </View>
+      <View style={styles.view2}>
+        <Text style={styles.text}>2</Text>
+      </View>
+      <View style={styles.view3}>
+        <Text style={styles.text}>3</Text>
+      </View>
     </View>
   );
 };
@@ -23,20 +22,34 @@ const App = () => {
 const styles = StyleSheet.create({
 
   body: {
-    backgroundColor: '#ffffff',
+    backgroundColor: '#3f4592',
+    flex: 1,
+    alignItems: 'stretch',
     justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1
+    flexDirection: 'row-reverse'
   },
   text: {
     color: '#000000',
     fontSize: 20,
-    margin: 20,
   },
-  button: {
-    margin: 20,
-  }
-
+  view1: {
+    flex: 1,
+    backgroundColor: '#D0FF00',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  view2: {
+    flex: 1,
+    backgroundColor: '#00F000',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  view3: {
+    flex: 1,
+    backgroundColor: '#00F0F0',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
 });
 
 export default App;
