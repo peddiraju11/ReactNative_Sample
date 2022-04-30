@@ -1,33 +1,79 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
-  StyleSheet, View, Text, Button, Linking
+  StyleSheet, View, Text, SectionList, RefreshControl
 } from 'react-native';
 
 const App = () => {
+
+  const [Sections, setSections] = useState([
+    {
+      title: 'Title 1',
+      data: ['Item 1-1', 'Item 1-2'],
+    },
+  ]);
+
+  const [isRefreshing, setRefresh] = useState(false)
+
+  const clickOnRefresh = () => {
+    setRefresh(true)
+    const sectionLenght = Sections.length + 1
+    setSections([...Sections,
+    {
+      title: 'Title ' + sectionLenght,
+      data: ['Item  ' + sectionLenght + '-1', 'Item  ' + sectionLenght + '-2']
+    }
+    ])
+    setRefresh(false)
+  }
   return (
-    <View style={styles.body}>
-      <Text style={styles.text}>Hi Team</Text>
-      <Button style={styles.button} title='Click Here' onPress={() => { Linking.openURL("https://www.youtube.com") }}></Button>
-    </View>
+    <SectionList
+      keyExtractor={(item, index) => index}
+      sections={Sections}
+      renderItem={({ item }) => (
+        <View style={styles.item}>
+          <Text style={styles.text_item}>{item}</Text>
+        </View >
+      )}
+      renderSectionHeader={({ section }) => (
+        <View style={styles.header}>
+          <Text style={styles.text_header}>{section.title}</Text>
+        </View >
+      )}
+      refreshControl={
+        <RefreshControl
+          refreshing={isRefreshing}
+          onRefresh={clickOnRefresh}
+        />
+      }
+
+    />
   );
 };
 
 const styles = StyleSheet.create({
 
-  body: {
-    backgroundColor: '#ffffff',
+  header: {
+    backgroundColor: '#4ae1fa',
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 1
+    borderWidth: 2,
   },
-  text: {
+  item: {
+    borderBottomWidth: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text_header: {
     color: '#000000',
-    fontSize: 20,
-    margin: 20,
+    fontSize: 45,
+    fontStyle: 'italic',
+    margin: 10,
   },
-  button: {
-    margin: 20,
-  }
+  text_item: {
+    color: '#000000',
+    fontSize: 35,
+    margin: 5,
+  },
 
 });
 
