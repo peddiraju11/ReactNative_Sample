@@ -1,18 +1,39 @@
 import React, { useState } from 'react';
 import {
   StyleSheet, View, Text, TextInput, Button,
-  TouchableOpacity, TouchableHighlight, TouchableWithoutFeedback, Pressable
+  TouchableOpacity, TouchableHighlight, TouchableWithoutFeedback,
+  Pressable, Alert, ToastAndroid,
 } from 'react-native';
 
 const App = () => {
 
-  const [name, setName] = useState()
+  const [name, setName] = useState('')
 
   const [IsSubmitted, setSubmit] = useState(false)
 
   const onPressHandler = () => {
 
-    setSubmit(true)
+    if (name.length > 3) {
+      setSubmit(true)
+    } else {
+      //   Alert.alert('Warning', 'You should ennter minimum 4 characters',
+      //     [
+      //       {
+      //         text: 'w wef wer',
+      //         onPress: () => console.warn('click wer')
+      //       },
+      //       {
+      //         text: 'Cancel',
+      //         onPress: () => console.warn('click cancel')
+      //       },
+      //       {
+      //         text: 'Ok',
+      //         onPress: () => console.warn('wehbhjbew')
+      //       },
+      //     ], { cancelable: true })
+      // }
+      ToastAndroid.show('You should ennter minimum 4 characters', ToastAndroid.SHORT);
+    }
   }
   return (
     <View style={styles.body}>
@@ -25,38 +46,6 @@ const App = () => {
         maxLength={4}
         secureTextEntry={true}
       />
-      {/* <Button
-        title='submit'
-        onPress={onPressHandler}
-        disabled={IsSubmitted}
-      /> */}
-      {/* <TouchableOpacity
-        style={styles.button}
-        onPress={onPressHandler}
-        activeOpacity={0.}
-      >
-        <Text style={styles.text}>{IsSubmitted ? 'clear' : 'submit'}</Text>
-      </TouchableOpacity> */}
-
-      {/* <TouchableHighlight
-        style={styles.button}
-        onPress={onPressHandler}
-        activeOpacity={0.5}
-        underlayColor="#00F4"
-      >
-        <Text style={styles.text}>{IsSubmitted ? 'clear' : 'submit'}</Text>
-      </TouchableHighlight> */}
-
-      {/* <TouchableWithoutFeedback
-        onPress={onPressHandler}
-        activeOpacity={0.5}
-        underlayColor="#00F4"
-      >
-        <View style={styles.button} >
-          <Text style={styles.text}>{IsSubmitted ? 'clear' : 'submit'}</Text>
-        </View>
-      </TouchableWithoutFeedback> */}
-
       <Pressable
         onPress={onPressHandler}
         hitSlop={{ top: 20, bottom: 20, left: 20, right: 29 }}
@@ -66,10 +55,6 @@ const App = () => {
           <Text style={styles.text}>{IsSubmitted ? 'clear' : 'submit'}</Text>
         </View>
       </Pressable>
-
-
-
-
       {
         IsSubmitted ?
           <Text style={styles.text}>You entered name: {name}</Text>
