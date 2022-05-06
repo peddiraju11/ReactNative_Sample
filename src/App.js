@@ -2,17 +2,17 @@ import React from 'react';
 import {
   StyleSheet, View, Text, Button, Linking, Image, ImageBackground
 } from 'react-native';
+import ImageItem from './ImageComponent';
 
 const App = () => {
   return (
     <ImageBackground
       style={styles.body}
-      source={require('./assets/background.jpg')}>
-      <Image
-        style={styles.image}
-        source={require('./assets/baby.jpg')}
-        resizeMode='center'
+      source={require('../assets/background.jpg')}>
+      <ImageItem
+        text={'Hey dear'}
       />
+
       <Image
         style={styles.image}
         source={{ uri: 'https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U' }}
@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
     margin: 20,
   },
   image: {
-    margin: 20,
-    height: 300,
+    margin: 0,
+    height: 100,
     width: 100
   }
 
