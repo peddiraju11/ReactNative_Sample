@@ -1,14 +1,24 @@
 import React from 'react';
 import {
-  StyleSheet, View, Text, Button, Linking
+  StyleSheet, View, Text, Button, Linking, Image, ImageBackground
 } from 'react-native';
 
 const App = () => {
   return (
-    <View style={styles.body}>
-      <Text style={styles.text}>Hi Team</Text>
-      <Button style={styles.button} title='Click Here' onPress={() => { Linking.openURL("https://www.youtube.com") }}></Button>
-    </View>
+    <ImageBackground
+      style={styles.body}
+      source={require('./assets/background.jpg')}>
+      <Image
+        style={styles.image}
+        source={require('./assets/baby.jpg')}
+        resizeMode='center'
+      />
+      <Image
+        style={styles.image}
+        source={{ uri: 'https://i.picsum.photos/id/237/200/300.jpg?hmac=TmmQSbShHz9CdQm0NkEjx1Dyh_Y984R9LpNrpvH2D_U' }}
+        resizeMode='center'
+      />
+    </ImageBackground>
   );
 };
 
@@ -16,9 +26,8 @@ const styles = StyleSheet.create({
 
   body: {
     backgroundColor: '#ffffff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1
+    flex: 1,
+    alignItems: 'center'
   },
   text: {
     color: '#000000',
@@ -27,6 +36,11 @@ const styles = StyleSheet.create({
   },
   button: {
     margin: 20,
+  },
+  image: {
+    margin: 20,
+    height: 300,
+    width: 100
   }
 
 });
